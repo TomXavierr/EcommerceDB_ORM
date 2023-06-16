@@ -43,6 +43,7 @@ class Sport(models.Model):
 
 class Color(models.Model):
     color_name                = models.CharField(max_length=30)
+    color_code                = models.CharField(max_length=7)
 
     def __str__(self):
         return str(self.color_name)
@@ -65,9 +66,7 @@ class Variants(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         # Concatenate product name, size, and color names
-        color_name = self.color.color_name
-        print(color_name)
-        variant_name = f"{self.variant_product.product_name} {self.size} {color_name}"
+        variant_name = f"{self.variant_product.product_name} {self.size} {self.color}"
 
         # Assign the concatenated name to the variant_name field
         self.variant_name = variant_name
@@ -76,3 +75,6 @@ class Variants(models.Model):
 
     def __str__(self):
         return str(self.variant_name)
+    
+    def get_unique_colors(self):
+        return self.variant_product.variants.order_by('color').values_list('color__color_name', flat=True).distinct()
