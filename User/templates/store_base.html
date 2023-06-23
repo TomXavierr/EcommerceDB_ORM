@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="{% static 'store/assets/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'store/assets/css/skins/skin-demo-4.css' %}">
     <link rel="stylesheet" href="{% static 'store/assets/css/demos/demo-4.css' %}">
+    <link rel="stylesheet" href="{% static 'store/assets/css/plugins/nouislider/nouislider.css' %}">
 
     <!-- =======================Additional links==================================================== -->
 
@@ -217,7 +218,7 @@
                              
                                 </li>
                                 <li>
-                                    <a href="category.html" class="sf-with-ul">Shop</a>
+                                    <a href="{% url 'shop'  %}" class="sf-with-ul">Shop</a>
 
                                     <div class="megamenu megamenu-md">
                                         <div class="row no-gutters">
@@ -478,6 +479,8 @@
     <script src="{% static 'store/assets/js/jquery.plugin.min.js' %}"></script>
     <script src="{% static 'store/assets/js/jquery.magnific-popup.min.js' %}"></script>
     <script src="{% static 'store/assets/js/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'store/assets/js/nouislider.min.js' %}"></script>
+    <script src="{% static 'store/assets/js/wNumb.js' %}"></script>
     <!-- Main JS File -->
     <script src="{% static 'store/assets/js/main.js' %}"></script>
     <script src="{% static 'store/assets/js/demos/demo-4.js' %}"></script>
