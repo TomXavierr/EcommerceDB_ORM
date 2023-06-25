@@ -13,7 +13,6 @@ class Products(models.Model):
     product_brand             = models.ForeignKey("Brand", on_delete=models.CASCADE, default=False , null=False)
     product_category          = models.ForeignKey("Category", on_delete=models.CASCADE, default=False , null=False)
     product_gender            = models.CharField(max_length=10,choices=GENDER_CHOICES,default='Men')
-    product_sport             = models.ForeignKey("Sport", on_delete=models.CASCADE, default=False , null=False)
     product_type              = models.CharField(max_length=30, null=False)
     product_price             = models.DecimalField(max_digits=8, decimal_places=2, null=False)
 
@@ -22,7 +21,7 @@ class Products(models.Model):
     
 class Category(models.Model):
     category_name             = models.CharField(max_length=50)
-    # thumbnail                  = models.ImageField(upload_to='photos/',null=False,blank=False)
+    thumbnail                  = models.ImageField(upload_to='category_thumbnails/',null=True,blank=True)
     
     def __str__(self):
         return str(self.category_name)
@@ -30,21 +29,15 @@ class Category(models.Model):
     
 class Brand(models.Model):
     brand_name                = models.CharField(max_length=50)
-    # logo                       = models.ImageField(upload_to='Logos/',null=False,blank=False)
+    logo                       = models.ImageField(upload_to='brand_logos/',null=True,blank=True)
     
     def __str__(self):
         return str(self.brand_name)
     
-class Sport(models.Model):
-    sport_name                = models.CharField(max_length=30)
-
-    def __str__(self):
-        return str(self.sport_name)
 
 class Color(models.Model):
     color_name                = models.CharField(max_length=30)
-    color_code                = models.CharField(max_length=7)
-
+   
     def __str__(self):
         return str(self.color_name)
 

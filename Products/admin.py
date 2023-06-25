@@ -9,5 +9,4 @@ admin.site.register(Color)
 admin.site.register(Brand)
 admin.site.register(Size)
 admin.site.register(Category)
-admin.site.register(Sport)
 
