@@ -54,7 +54,10 @@
                                     <p class="text-center">or sign in with</p>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <a href="#" class="btn btn-login btn-g">
+                                        {% load socialaccount %}
+                                            <a href="{% provider_login_url 'google' %} " class="btn btn-login btn-g">
+                                            
+                                            {% comment %} <a href="/accounts/google/login/" class="btn btn-login btn-g"> {% endcomment %}
                                                 <i class="icon-google"></i>
                                                 Login With Google
                                             </a>
