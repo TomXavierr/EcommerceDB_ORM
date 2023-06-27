@@ -3,16 +3,9 @@ from django.db import models
 # Create your models here.
 
 class Products(models.Model):
-    GENDER_CHOICES = [
-            ('Men','Men'),
-            ('Women','Women'), 
-        ]
-
     product_name              = models.CharField(max_length=100)
-    # product_description       = models.TextField(max_length=300)
     product_brand             = models.ForeignKey("Brand", on_delete=models.CASCADE, default=False , null=False)
     product_category          = models.ForeignKey("Category", on_delete=models.CASCADE, default=False , null=False)
-    product_gender            = models.CharField(max_length=10,choices=GENDER_CHOICES,default='Men')
     product_type              = models.CharField(max_length=30, null=False)
     product_price             = models.DecimalField(max_digits=8, decimal_places=2, null=False)
 
@@ -21,7 +14,7 @@ class Products(models.Model):
     
 class Category(models.Model):
     category_name             = models.CharField(max_length=50)
-    thumbnail                  = models.ImageField(upload_to='category_thumbnails/',null=True,blank=True)
+    thumbnail                 = models.ImageField(upload_to='category_thumbnails/',null=True,blank=True)
     
     def __str__(self):
         return str(self.category_name)
@@ -29,7 +22,7 @@ class Category(models.Model):
     
 class Brand(models.Model):
     brand_name                = models.CharField(max_length=50)
-    logo                       = models.ImageField(upload_to='brand_logos/',null=True,blank=True)
+    logo                      = models.ImageField(upload_to='brand_logos/',null=True,blank=True)
     
     def __str__(self):
         return str(self.brand_name)
@@ -54,7 +47,8 @@ class Variants(models.Model):
     variant_name              = models.CharField(max_length=100, blank=True)
     size                      = models.ForeignKey(Size, on_delete=models.RESTRICT, default=False, null=False)
     color                     = models.ForeignKey(Color, on_delete=models.RESTRICT, default=False, null=False)
-    stock                     = models.PositiveIntegerField()
+    product_description       = models.TextField(max_length=300,default=False)
+    sku                     = models.PositiveIntegerField()
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -69,5 +63,7 @@ class Variants(models.Model):
     def __str__(self):
         return str(self.variant_name)
     
-    def get_unique_colors(self):
-        return self.variant_product.variants.order_by('color').values_list('color__color_name', flat=True).distinct()
+    # def get_unique_colors(self):
+    #     return self.variant_product.variants.order_by('color').values_list('color__color_name', flat=True).distinct()
+
+
