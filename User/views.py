@@ -13,7 +13,7 @@ from User.forms import RegistrationForm,AccountAuthenticationForm
 def home(request):
     products = Products.objects.all()
     for product in products:
-        unique_colors = product.variants.values_list('color__color_code', flat=True).distinct()
+        unique_colors = product.variants.values_list('color__color_name', flat=True).distinct()
         product.unique_colors = unique_colors
         print(unique_colors)
     context = {
